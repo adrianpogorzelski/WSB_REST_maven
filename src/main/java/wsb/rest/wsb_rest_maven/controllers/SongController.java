@@ -42,4 +42,20 @@ public class SongController {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
         }
     }
+
+    @PutMapping("/songs/{id}")
+    ResponseEntity<Song> update(@PathVariable Long id, @RequestBody Song song) {
+        Song updatedSong = songService.update(id, song);
+        if (updatedSong != null) {
+            return ResponseEntity.ok(updatedSong);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @DeleteMapping("/songs/{id}")
+    ResponseEntity<Void> delete(@PathVariable Long id) {
+        songService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

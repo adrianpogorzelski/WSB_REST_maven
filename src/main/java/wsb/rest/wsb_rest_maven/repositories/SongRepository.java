@@ -37,4 +37,25 @@ public class SongRepository {
         songs.add(createdSong);
         return createdSong;
     }
+
+    public Song update(Long id, Song song) {
+        Song songToUpdate = find(id);
+        if (songToUpdate == null) {
+            return null;
+        }
+
+        songToUpdate.setAuthor(song.getAuthor());
+        songToUpdate.setTitle(song.getTitle());
+        songToUpdate.setYear(song.getYear());
+
+        return songToUpdate;
+    }
+
+    public void delete(Long id) {
+        Song songToRemove = find(id);
+        if (songToRemove == null) {
+            return;
+        }
+        songs.remove(songToRemove);
+    }
 }
