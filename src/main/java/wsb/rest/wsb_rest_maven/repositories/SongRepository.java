@@ -13,6 +13,13 @@ public class SongRepository {
         add(new Song(3L, "The Black Satans", "Satanic darkness", 1991L));
     }};
 
+    public static Song find(Long id) {
+        return songs.stream()
+                .filter(song -> song.getId()
+                .equals(id)).findFirst()
+                .orElse(null);
+    }
+
     public List<Song> findAll() {
         return songs;
     }

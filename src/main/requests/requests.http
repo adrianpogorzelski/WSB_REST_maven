@@ -1,1 +1,5 @@
+### Find All
 GET http://localhost:8080/songs
+
+### Find
+GET http://localhost:8080/songs/15
