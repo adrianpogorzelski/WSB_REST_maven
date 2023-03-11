@@ -1,10 +1,9 @@
 package wsb.rest.wsb_rest_maven.controllers;
 
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import wsb.rest.wsb_rest_maven.models.Song;
 import wsb.rest.wsb_rest_maven.services.SongService;
 
@@ -31,6 +30,16 @@ public class SongController {
             return ResponseEntity.ok(song);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @PostMapping("/songs")
+    ResponseEntity<Song> create(@RequestBody Song song) {
+        Song createdSong = songService.create(song);
+        if (createdSong != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdSong);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
         }
     }
 }

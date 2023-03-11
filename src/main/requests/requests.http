@@ -3,3 +3,13 @@ GET http://localhost:8080/songs
 
 ### Find
 GET http://localhost:8080/songs/15
+
+### CREATE
+POST http://localhost:8080/songs
+Content-Type: application/json
+
+{
+  "title": "Title",
+  "author": "Authro",
+  "year": 2000
+}

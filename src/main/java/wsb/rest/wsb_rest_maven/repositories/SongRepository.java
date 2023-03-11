@@ -7,6 +7,8 @@ import java.util.LinkedList;
 @Repository
 public class SongRepository {
 
+    static Long currentId = 4L;
+
     static List<Song> songs = new LinkedList<>() {{
         add(new Song(1L, "Zenobiusz Martynski", "Zycie to moment", 1990L));
         add(new Song(2L, "Ron Barley", "High as a mountain", 1975L));
@@ -22,5 +24,17 @@ public class SongRepository {
 
     public List<Song> findAll() {
         return songs;
+    }
+
+    public Song create(Song song) {
+        Song createdSong = new Song(
+                currentId++,
+                song.getAuthor(),
+                song.getTitle(),
+                song.getYear()
+        );
+
+        songs.add(createdSong);
+        return createdSong;
     }
 }
